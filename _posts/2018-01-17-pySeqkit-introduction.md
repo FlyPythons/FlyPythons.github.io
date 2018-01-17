@@ -47,6 +47,37 @@ fastaStat.py in.fa > in.fa.stat
 fastqStat.py in.fq > in.fq.stat
 ```
 
+运行完会得到如下所示结果：
+
+```commandline
+Statistics for all fasta reads
+
+contig number:          3
+sum of contig length:   30
+contig average length:  10
+longest contig length:  10
+
+Distribution of contig length
+ Type             Bases           Count     %Bases
+  N10                10               1      33.33
+  N20                10               1      33.33
+  N30                10               1      33.33
+  N40                10               2      66.67
+  N50                10               2      66.67
+  N60                10               2      66.67
+  N70                10               3     100.00
+  N80                10               3     100.00
+  N90                10               3     100.00
+ >1kb                 0               0       0.00
+ >5kb                 0               0       0.00
+>10kb                 0               0       0.00
+>20kb                 0               0       0.00
+>30kb                 0               0       0.00
+>40kb                 0               0       0.00
+>50kb                 0               0       0.00
+>60kb                 0               0       0.00
+```
+
 在实际情况中，我们会遇到需要合并统计多个FASTA/Q文件的序列信息，比如多批测序Reads的FASTA/Q文件。
 
 ```commandline
