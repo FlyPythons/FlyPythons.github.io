@@ -13,7 +13,7 @@ tags:
 ---
 # 1. 背景
 FASTA和FASTQ是两种常见的生物序列文件格式。在生信分析过程中，我们经常会对这两种序列文件进行转换、统计、切分等操作，以了解数据的情况，便于进行后续分析。有许多工具能够帮助我们来完成这些过程，比如xxxxx，pySeqkit也是其中的一种。  
-pySeqkit是多个python脚本组成的工具包，脚本通过调用FastaReader.py、FastqReader.py这两个模块来处理输入的FASTA/Q文件中的序列信息。如果你用需要涉及到处理FASTA/Q文件的其他操作，可直接调用这两个模块读取FASTA/Q文件种的序列信息，
+pySeqkit是多个python脚本组成的工具包，脚本通过调用`FastaReader.py`、`FastqReader.py`这两个模块来处理输入的FASTA/Q文件中的序列信息。如果你用需要涉及到处理FASTA/Q文件的其他操作，可直接调用这两个模块读取FASTA/Q文件种的序列信息，
 # 2. 运行环境
 Python 2.7和Python3.5均已测试通过
 # 3. 安装
@@ -34,7 +34,7 @@ python test.py
 如无任何报错且结果生成正常，表明测试通过
 # 4. 使用
 ## 4.1 FASTA/Q文件序列信息统计
-我们经常需要统计FASTA/Q文件中序列的信息，无论是FASTQ文件中总碱基数、序列个数，还是FASTA文件中的Contig N50等等信息。这些信息可通过fastaStat.py和fastqStat.py来获得，命令如下：
+我们经常需要统计FASTA/Q文件中序列的信息，无论是FASTQ文件中总碱基数、序列个数，还是FASTA文件中的Contig N50等等信息。这些信息可通过`fastaStat.py`和`fastqStat.py`来获得，命令如下：
 ```commandline
 fastaStat.py in.fa > in.fa.stat
 fastqStat.py in.fq > in.fq.stat
@@ -48,25 +48,6 @@ sum of contig length:   30
 contig average length:  10
 longest contig length:  10
 
-Distribution of contig length
- Type             Bases           Count     %Bases
-  N10                10               1      33.33
-  N20                10               1      33.33
-  N30                10               1      33.33
-  N40                10               2      66.67
-  N50                10               2      66.67
-  N60                10               2      66.67
-  N70                10               3     100.00
-  N80                10               3     100.00
-  N90                10               3     100.00
- >1kb                 0               0       0.00
- >5kb                 0               0       0.00
->10kb                 0               0       0.00
->20kb                 0               0       0.00
->30kb                 0               0       0.00
->40kb                 0               0       0.00
->50kb                 0               0       0.00
->60kb                 0               0       0.00
 ```
 在实际情况中，我们会遇到需要合并统计多个FASTA/Q文件的序列信息，比如多批测序Reads的FASTA/Q文件。
 ```commandline
