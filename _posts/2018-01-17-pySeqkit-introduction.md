@@ -36,52 +36,25 @@ python test.py
 ## 4.1 FASTA/Q文件序列信息统计
 我们经常需要统计FASTA/Q文件中序列的信息，无论是FASTQ文件中总碱基数、序列个数，还是FASTA文件中的Contig N50等等信息。这些信息可通过`fastaStat.py`和`fastqStat.py`来获得，命令如下：
 ```commandline
-fastaStat.py in.fa \> in.fa.stat
-fastqStat.py in.fq \> in.fq.stat
+fastaStat.py in.fa > in.fa.stat
+fastqStat.py in.fq > in.fq.stat
 ```
 运行完之后，会得到以下序列信息：  
-```commandline
-Statistics for all fasta reads
 
-contig number:          3
-sum of contig length:   30
-contig average length:  10
-longest contig length:  10
-
-Distribution of contig length
- Type             Bases           Count     %Bases
-  N10                10               1      33.33
-  N20                10               1      33.33
-  N30                10               1      33.33
-  N40                10               2      66.67
-  N50                10               2      66.67
-  N60                10               2      66.67
-  N70                10               3     100.00
-  N80                10               3     100.00
-  N90                10               3     100.00
- \>1kb                 0               0       0.00
- \>5kb                 0               0       0.00
-\>10kb                 0               0       0.00
-\>20kb                 0               0       0.00
-\>30kb                 0               0       0.00
-\>40kb                 0               0       0.00
-\>50kb                 0               0       0.00
-\>60kb                 0               0       0.00
-```
 在实际情况中，我们会遇到需要合并统计多个FASTA/Q文件的序列信息，比如多批测序Reads的FASTA/Q文件。
 ```commandline
-fastaStat.py 1.fa 2.fa \*.fa \> in.fa.stat
-fastqStat.py 1.fq 2.fq \*.fq \> in.fq.stat
+fastaStat.py 1.fa 2.fa *.fa > in.fa.stat
+fastqStat.py 1.fq 2.fq *.fq > in.fq.stat
 ```
 同时可通过‘-c’参数来调整并行进程的数量，多个文件请一定记得用此参数，加速效果明显。
 ```commandline
-fastaStat.py -c 10 1.fa 2.fa \*.fa \> in.fa.stat
-fastqStat.py -c 10 1.fq 2.fq \*.fq \> in.fq.stat
+fastaStat.py -c 10 1.fa 2.fa *.fa > in.fa.stat
+fastqStat.py -c 10 1.fq 2.fq *.fq > in.fq.stat
 ```
 对于多个FASTA/Q文件，也可将文件路径输出到‘input.fofn’，再运行以下命令：
 ```commandline
-fastaStat.py -c 10 -f in.fofn \> in.fa.stat
-fastqStat.py -c 10 -f in.fofn \> in.fq.stat
+fastaStat.py -c 10 -f in.fofn > in.fa.stat
+fastqStat.py -c 10 -f in.fofn > in.fq.stat
 ```
 ## 4.2 FASTA/Q文件的切分
 在实际分析的过程中，由于过大的序列文件可能导致计算资源不够、计算时间过长等问题，我们通常会对序列文件进行切分。  
