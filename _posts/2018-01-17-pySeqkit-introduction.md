@@ -39,8 +39,8 @@ python test.py
 fastaStat.py in.fa > in.fa.stat
 fastqStat.py in.fq > in.fq.stat
 ```
-运行完之后，会得到以下序列信息：
-```shell
+运行完之后，会得到以下序列信息：  
+```commandline
 Statistics for all fasta reads
 
 contig number:          3
