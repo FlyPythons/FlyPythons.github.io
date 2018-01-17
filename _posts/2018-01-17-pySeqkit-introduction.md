@@ -39,8 +39,6 @@ python test.py
 fastaStat.py in.fa > in.fa.stat
 fastqStat.py in.fq > in.fq.stat
 ```
-运行完之后，会得到以下序列信息：  
-
 在实际情况中，我们会遇到需要合并统计多个FASTA/Q文件的序列信息，比如多批测序Reads的FASTA/Q文件。
 ```commandline
 fastaStat.py 1.fa 2.fa *.fa > in.fa.stat
