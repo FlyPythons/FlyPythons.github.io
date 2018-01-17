@@ -2,9 +2,9 @@
 title: FlyPythons
 SEOTitle: FlyPythons Blog
 header-img: img/home-bg-hill.jpg
-email: keysaim@gmail.com
+email: jpfan@whu.edu.com
 description: "描述"
-keyword: "窗外蟋蟀, keysaim, python"
+keyword: ""
 url: "https://FlyPythons.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -12,12 +12,7 @@ baseurl: ""                             # for example, '/blog' if your blog host
 
 # SNS settings
 RSS: false
-#weibo_username:     keysaim
-#zhihu_username:     keysaim
 github_username:    FlyPythons
-#twitter_username:   keysaim
-#jianshu_username:   e413b88a622b
-#facebook_username:  keysaim
 # linkedin_username:  firstname-lastname-idxxxx
 
 
