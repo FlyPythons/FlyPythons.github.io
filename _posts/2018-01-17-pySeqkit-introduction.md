@@ -18,20 +18,17 @@ pySeqkit是多个python脚本组成的工具包，脚本通过调用`FastaReader
 Python 2.7和Python3.5均已测试通过
 # 3. 安装
 * 使用git安装
-
 ```commandline
 git clone https://github.com/FlyPythons/pySeqkit.git
 ```
 
 * 直接下载后安装
-
 ```commandline
 wget https://github.com/FlyPythons/pySeqkit/archive/master.zip
 unzip master.zip
 ```
 
 * 测试安装
-
 ```commandline
 cd test
 python test.py
