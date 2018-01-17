@@ -12,7 +12,7 @@ tags:
     - Sequence analysis
 ---
 # 1. 背景
-FASTA和FASTQ是两种常见的生物序列文件格式。在生信分析过程中，我们经常会对这两种序列文件进行转换、统计、切分等操作，以了解数据的情况，便于进行后续分析。有许多工具能够帮助我们来完成这些过程，比如xxxxx，pySeqkit也是其中的一种。  
+FASTA和FASTQ是两种常见的生物序列文件格式。在生信分析过程中，我们经常会对这两种序列文件进行转换、统计、切分等操作，以了解数据的情况，便于进行后续分析。有许多工具能够帮助我们来完成这些过程，下面来介绍一个我写的完成此类操作的工具pySeqkit(https://github.com/FlyPythons/pySeqkit)。  
 pySeqkit是多个python脚本组成的工具包，脚本通过调用`FastaReader.py`、`FastqReader.py`这两个模块来处理输入的FASTA/Q文件中的序列信息。如果你用需要涉及到处理FASTA/Q文件的其他操作，可直接调用这两个模块读取FASTA/Q文件种的序列信息，
 # 2. 运行环境
 Python 2.7和Python3.5均已测试通过
