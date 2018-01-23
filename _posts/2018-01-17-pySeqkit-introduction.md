@@ -22,11 +22,9 @@ Python 2.7和Python3.5均已测试通过
 git clone https://github.com/FlyPythons/pySeqkit.git
 ```
 
-* 直接下载后安装
-```commandline
-wget https://github.com/FlyPythons/pySeqkit/archive/master.zip
-unzip master.zip
-```
+* 直接下载后安装  
+下载地址：https://github.com/FlyPythons/pySeqkit/releases
+
 
 * 测试安装
 ```commandline
@@ -94,6 +92,11 @@ fastqStat.py -c 10 1.fq 2.fq *.fq > in.fq.stat
 ```commandline
 fastaStat.py -c 10 -f in.fofn > in.fa.stat
 fastqStat.py -c 10 -f in.fofn > in.fq.stat
+```
+
+对于二代测序产生的短READs的FASTQ文件，加入'-ngs'参数跳过N50等的统计,防止无意义的计算
+```commandline
+fastqStat.py -ngs -c 10 *.R1.fq *.R2.fq > in.fq.stat
 ```
 ## 4.2 FASTA/Q文件的切分
 在实际分析的过程中，由于过大的序列文件可能导致计算资源不够、计算时间过长等问题，我们通常会对序列文件进行切分。  
