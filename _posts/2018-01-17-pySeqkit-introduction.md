@@ -13,8 +13,9 @@ tags:
 ---
 FASTA和FASTQ是两种常见的生物序列文件格式，在生信分析过程中，我们经常会对这两种序列文件进行转换、统计、切分等操作，以了解数据的情况，便于进行后续分析。常用的处理软件包括：
 1. seqkit  
-2. seqtk    
-这些工具相当强大，能支持各种操作，但是在对FASTA/Q的数据统计方面稍显薄弱，尤其是在多个文件合并统计中。测序的原始数据通常由多个FASTA/Q文件组成，比如： 
+2. seqtk
+
+这些工具相当强大，能支持各种操作，但是在对FASTA/Q的数据统计方面稍显薄弱，尤其是在多个文件合并统计中。测序的原始数据通常由多个FASTA/Q文件组成，比如：  
 Sequel下机数据bam2fasta后的数据
 ```commandline
 m54061_170922_182836.subreads.fasta
@@ -41,7 +42,7 @@ Nanopore下机fast5转fastq后的数据
 * 支持平台： linux， windows
 * 开源地址： https://github.com/FlyPythons/pySeqkit 
 * 运行环境： python2.7及以上, python3.5及以上
-  
+
 ## 特点
 * 统计结果详细
 * 支持gzip输入
@@ -70,9 +71,9 @@ fastqStat.py in.fq > in.fq.stat
 fastaStat.py -c 10 1.fa 2.fa *.fa > in.fa.stat
 fastqStat.py -c 10 1.fq 2.fq *.fq > in.fq.stat
 ```
-`-c`参数表示同时并行的进程数，默认为1.  
-程序最终运行结果如下:
+`-c`参数表示同时并行的进程数，默认为1.
 
+程序最终运行结果如下:
 ```commandline
 Statistics for all fasta reads
 
