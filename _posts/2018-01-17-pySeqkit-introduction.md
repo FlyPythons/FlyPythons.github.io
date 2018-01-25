@@ -34,7 +34,7 @@ Nanopore下机fast5转fastq后的数据
 ```
 由于上述工具简单地完成统计工作，因此，我写了一个工具包[pySeqkit](https://github.com/FlyPythons/pySeqkit)，来完成统计工作，同时工具包中也包含了切分的工具。  
 
-# 介绍
+# 1. 介绍
 ## 基本信息
 * 工具类型： 命令行
 * 支持格式： fasta, fasta.gz, fastq, fastq.gz
@@ -48,7 +48,7 @@ Nanopore下机fast5转fastq后的数据
 * 支持gzip输入
 * 多个文件输入支持并行处理
 
-# 功能
+# 2. 功能
 目前为止，pySeqkit工具中有4个工具,分为以下两类：
 * 序列统计  
 `fastaStat.py` 统计fasta序列的信息  
@@ -59,7 +59,7 @@ Nanopore下机fast5转fastq后的数据
 
 更多功能正在解锁中......
 
-# 使用
+# 3. 使用
 ## 序列统计
 * 单个文件  
 ```
@@ -121,7 +121,7 @@ fastaSplit.py -m length -n {i} in.fa
 fastqSplit.py -m length -n {i} in.fq
 ```
 
-## 更多功能
+# 4. 更多功能
 该工具包目前功能有限，有以下功能待解锁：
 * 个性化定制统计结果  
 添加`-N`参数定义需要统计的Nxx结果  
