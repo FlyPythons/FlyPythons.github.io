@@ -47,6 +47,7 @@ Nanopore下机fast5转fastq后的数据
 * 统计结果详细
 * 支持gzip输入
 * 多个文件输入支持并行处理
+
 # 功能
 目前为止，pySeqkit工具中有4个工具,分为以下两类：
 * 序列统计  
@@ -107,14 +108,17 @@ fastqStat.py -ngs -c 10 *.R1.fq *.R2.fq > in.fq.stat
 ```
 ## 序列切分
 在实际分析的过程中，由于过大的序列文件可能导致计算资源不够、计算时间过长等问题，我们通常会对序列文件进行切分。  
-序列文件切分通常有两种模式：  
+序列文件切分通常有两种模式：
+
 * {i}个序列放到单个文件中
 
 ```commandline
 fastaSplit.py -m number -n {i} in.fa
 fastqSplit.py -m number -n {i} in.fq
 ```
-* 单个文件序列总长不超过{i}  
+
+* 单个文件序列总长不超过{i}
+
 ```commandline
 fastaSplit.py -m length -n {i} in.fa
 fastqSplit.py -m length -n {i} in.fq
