@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "pySeqkit-FASTA/Q文件处理工具"
+title:      "pySeqkit-实用的FASTA/Q处理工具"
 subtitle:   ""
 date:       2018-01-16
 author:     "FlyPythons"
@@ -11,38 +11,65 @@ tags:
     - Bioinformation
     - Sequence analysis
 ---
-# 1. 背景
-FASTA和FASTQ是两种常见的生物序列文件格式。在生信分析过程中，我们经常会对这两种序列文件进行转换、统计、切分等操作，以了解数据的情况，便于进行后续分析。有许多工具能够帮助我们来完成这些过程，下面来介绍一个我写的完成此类操作的工具[pySeqkit](https://github.com/FlyPythons/pySeqkit)。  
-pySeqkit是多个python脚本组成的工具包，脚本通过调用`FastaReader.py`、`FastqReader.py`这两个模块来处理输入的FASTA/Q文件中的序列信息。如果你用需要涉及到处理FASTA/Q文件的其他操作，可直接调用这两个模块读取FASTA/Q文件种的序列信息，
-# 2. 运行环境
-Python 2.7和Python3.5均已测试通过
-# 3. 安装
-* 使用git安装
+FASTA和FASTQ是两种常见的生物序列文件格式，在生信分析过程中，我们经常会对这两种序列文件进行转换、统计、切分等操作，以了解数据的情况，便于进行后续分析。常用的处理软件包括：  
+1. seqkit  
+2. seqtk  
+
+这些工具相当强大，能支持各种操作，但是在对FASTA/Q的数据统计方面稍显薄弱，尤其是在多个文件合并统计中。测序的原始数据通常由多个FASTA/Q文件组成，比如：
+Sequel下机数据bam2fasta后的数据
 ```commandline
-git clone https://github.com/FlyPythons/pySeqkit.git
+m54061_170922_182836.subreads.fasta
+m54136_171108_001745.subreads.fasta
+m54143_170814_064401.subreads.fasta
+m54152_170801_115501.subreads.fasta
+m54139_170821_122203.subreads.fasta
+......
 ```
-
-* 直接下载后安装  
-下载地址：https://github.com/FlyPythons/pySeqkit/releases
-
-
-* 测试安装
+Nanopore下机fast5转fastq后的数据
 ```commandline
-cd test
-python test.py
+20171125_NPL0001_A1.fastq
+20171125_NPL0001_A2.fastq
+20171125_NPL0001_A3.fastq
+......
 ```
+由于上述工具简单地完成统计工作，因此，我写了一个工具包[pySeqkit](https://github.com/FlyPythons/pySeqkit)，来完成统计工作，同时工具包中也包含了切分的工具。  
+# 介绍
+## 基本信息
+* 工具类型： 命令行
+* 支持格式： fasta, fasta.gz, fastq, fastq.gz
+* 编程语言： python
+* 支持平台： linux， windows
+* 开源地址： https://github.com/FlyPythons/pySeqkit 
+* 运行环境： python2.7及以上, python3.5及以上
+  
+## 特点
+* 统计结果详细
+* 支持gzip输入
+* 多个文件输入支持并行处理
+# 功能
+目前为止，pySeqkit工具中有4个工具,分为以下两类：
+* 序列统计  
+`fastaStat.py` 统计fasta序列的信息  
+`fastqStat.py` 统计fastq序列的信息  
+* 序列切分  
+`fastaSplit.py` 切分fasta序列  
+`fastqSplit.py` 切分fastq序列
 
-如无任何报错且结果生成正常，表明测试通过
-# 4. 使用
-## 4.1 FASTA/Q文件序列信息统计
-我们经常需要统计FASTA/Q文件中序列的信息，无论是FASTQ文件中总碱基数、序列个数，还是FASTA文件中的Contig N50等等信息。这些信息可通过`fastaStat.py`和`fastqStat.py`来获得，命令如下：
-
-```commandline
+更多功能正在解锁中......
+# 使用
+## 序列统计
+* 单个文件  
+```
 fastaStat.py in.fa > in.fa.stat
 fastqStat.py in.fq > in.fq.stat
 ```
-
-运行完会得到如下所示结果：
+* 多个文件
+```commandline
+fastaStat.py -c 10 1.fa 2.fa *.fa > in.fa.stat
+fastqStat.py -c 10 1.fq 2.fq *.fq > in.fq.stat
+```
+`-c`参数表示同时并行的进程数，默认为1.  
+程序最终运行结果如下:
 
 ```commandline
 Statistics for all fasta reads
@@ -72,40 +99,30 @@ Distribution of contig length
 >50kb                 0               0       0.00
 >60kb                 0               0       0.00
 ```
-
-在实际情况中，我们会遇到需要合并统计多个FASTA/Q文件的序列信息，比如多批测序Reads的FASTA/Q文件。
-
-```commandline
-fastaStat.py 1.fa 2.fa *.fa > in.fa.stat
-fastqStat.py 1.fq 2.fq *.fq > in.fq.stat
-```
-
-同时可通过‘-c’参数来调整并行进程的数量，多个文件请一定记得用此参数，加速效果明显。
-
-```commandline
-fastaStat.py -c 10 1.fa 2.fa *.fa > in.fa.stat
-fastqStat.py -c 10 1.fq 2.fq *.fq > in.fq.stat
-```
-
-对于多个FASTA/Q文件，也可将文件路径输出到‘input.fofn’，再运行以下命令：
-
-```commandline
-fastaStat.py -c 10 -f in.fofn > in.fa.stat
-fastqStat.py -c 10 -f in.fofn > in.fq.stat
-```
-
-对于二代测序产生的短READs的FASTQ文件，加入'-ngs'参数跳过N50等的统计,防止无意义的计算
+\* 对于二代测序产生的短READs的FASTQ文件，加入`-ngs`参数跳过N50等的统计,防止无意义的计算
 ```commandline
 fastqStat.py -ngs -c 10 *.R1.fq *.R2.fq > in.fq.stat
 ```
-## 4.2 FASTA/Q文件的切分
+## 序列切分
 在实际分析的过程中，由于过大的序列文件可能导致计算资源不够、计算时间过长等问题，我们通常会对序列文件进行切分。  
-序列文件切分通常有两种模式：单个文件序列总个数和单个文件序列总长度。可通过以下命令进行切分：
+序列文件切分通常有两种模式：  
+* {i}个序列放到单个文件中
 
 ```commandline
-fastaSplit.py -m number -n {max number} -o split in.fa
-fastqSplit.py -m number -n {max number} -o split in.fq
+fastaSplit.py -m number -n {i} in.fa
+fastqSplit.py -m number -n {i} in.fq
 ```
-
-切分后结果会在当前目录的“split”文件夹中，包括切分后的文件“in.\*.fa”以及包含切分文件路径的文件“split_list”。同时‘fastaSplit.py’还会产生包含序列信息的bed文件“in.\*.fa.bed”  
-有多个输入文件时，也可以通过统计脚本相同的参数运行脚本。
+* 单个文件序列总长不超过{i}  
+```commandline
+fastaSplit.py -m length -n {i} in.fa
+fastqSplit.py -m length -n {i} in.fq
+```
+## 更多功能
+该工具包目前功能有限，有以下功能待解锁：
+* 个性化定制统计结果  
+添加`-N`参数定义需要统计的Nxx结果  
+添加`-L`参数定义需要统计的长度阈值结果  
+添加绘图功能
+* fastq转fasta
+ 
+更多意见可发送邮件至jpfan(at)whu(dot)edu(dot)cn
