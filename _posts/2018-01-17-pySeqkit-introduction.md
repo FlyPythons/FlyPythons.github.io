@@ -11,11 +11,10 @@ tags:
     - Bioinformation
     - Sequence analysis
 ---
-FASTA和FASTQ是两种常见的生物序列文件格式，在生信分析过程中，我们经常会对这两种序列文件进行转换、统计、切分等操作，以了解数据的情况，便于进行后续分析。常用的处理软件包括：  
+FASTA和FASTQ是两种常见的生物序列文件格式，在生信分析过程中，我们经常会对这两种序列文件进行转换、统计、切分等操作，以了解数据的情况，便于进行后续分析。常用的处理软件包括：
 1. seqkit  
-2. seqtk  
-
-这些工具相当强大，能支持各种操作，但是在对FASTA/Q的数据统计方面稍显薄弱，尤其是在多个文件合并统计中。测序的原始数据通常由多个FASTA/Q文件组成，比如：
+2. seqtk    
+这些工具相当强大，能支持各种操作，但是在对FASTA/Q的数据统计方面稍显薄弱，尤其是在多个文件合并统计中。测序的原始数据通常由多个FASTA/Q文件组成，比如： 
 Sequel下机数据bam2fasta后的数据
 ```commandline
 m54061_170922_182836.subreads.fasta
@@ -109,16 +108,13 @@ fastqStat.py -ngs -c 10 *.R1.fq *.R2.fq > in.fq.stat
 ## 序列切分
 在实际分析的过程中，由于过大的序列文件可能导致计算资源不够、计算时间过长等问题，我们通常会对序列文件进行切分。  
 序列文件切分通常有两种模式：
-
 * {i}个序列放到单个文件中
-
 ```commandline
 fastaSplit.py -m number -n {i} in.fa
 fastqSplit.py -m number -n {i} in.fq
 ```
 
 * 单个文件序列总长不超过{i}
-
 ```commandline
 fastaSplit.py -m length -n {i} in.fa
 fastqSplit.py -m length -n {i} in.fq
