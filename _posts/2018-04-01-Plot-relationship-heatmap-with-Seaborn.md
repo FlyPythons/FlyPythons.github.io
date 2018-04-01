@@ -1009,5 +1009,5 @@ sns.clustermap(df.corr(), center=0, cmap="vlag", linewidths=0,annot=True)
 
 ![png](https://github.com/FlyPythons/flypythons.github.io/raw/master/img/2018-04-01-heatmap-2.png)
 
-[Download Jupyter notebook](https://github.com/FlyPythons/flypythons.github.io/raw/master/_downloads/2018-04-01-Plot-relationship-heatmap-with-Seaborn.ipynb)
+[Download Jupyter notebook .ipynb](https://github.com/FlyPythons/flypythons.github.io/raw/master/_downloads/2018-04-01-Plot-relationship-heatmap-with-Seaborn.ipynb)
 
