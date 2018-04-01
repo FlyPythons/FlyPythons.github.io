@@ -989,7 +989,7 @@ sns.heatmap(df.corr(), center=0, cmap="vlag", linewidths=0, annot=False)
 
 
 
-![png](2018-04-01-heatmap-1.png)
+![png](https://github.com/FlyPythons/flypythons.github.io/raw/master/img/2018-04-01-heatmap-1.png)
 
 
 * 聚类热图
@@ -1007,5 +1007,7 @@ sns.clustermap(df.corr(), center=0, cmap="vlag", linewidths=0,annot=True)
 
 
 
-![png](output_7_1.png)
+![png](https://github.com/FlyPythons/flypythons.github.io/raw/master/img/2018-04-01-heatmap-2)
+
+Download Jupyter notebook ![url](https://github.com/FlyPythons/flypythons.github.io/raw/master/_downloads/2018-04-01-Plot-relationship-heatmap-with-Seaborn.ipynb)
 
